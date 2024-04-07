@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  job1:
+    build:
+      context: job1
+    environment:
+      - PORT=${JOB1_PORT}
+      - AUTH_TOKEN=${AUTH_TOKEN}
+    ports:
+      - "8081:${JOB1_PORT}"
+    volumes:
+      - file_storage_volume:/app/file_storage
+      - ./job1:/app
+
+
+  job2:
+    build:
+      context: job2
+    environment:
+      - PORT=${JOB2_PORT}
+    ports:
+      - "8082:${JOB2_PORT}"
+    volumes:
+      - file_storage_volume:/app/file_storage
+      - ./job2:/app
+
+volumes:
+  file_storage_volume:
