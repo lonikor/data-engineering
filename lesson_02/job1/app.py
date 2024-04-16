@@ -2,20 +2,11 @@ import os
 
 from flask import Flask, request
 
+from settings import AUTH_TOKEN, APPLICATION_PORT
 from sales_api.disk import save_to_disk_json
 from sales_api.http import fetch_data
 
 app = Flask(__name__)
-
-AUTH_TOKEN = os.environ.get('AUTH_TOKEN')
-port = os.environ.get('PORT')
-
-if not AUTH_TOKEN:
-    print("AUTH_TOKEN environment variable must be set")
-    raise Exception("AUTH_TOKEN environment variable must be set")
-
-if not port:
-    port = 8081
 
 
 @app.post("/")
@@ -43,4 +34,4 @@ def execute():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=port, host='0.0.0.0')
+    app.run(debug=True, port=APPLICATION_PORT, host='0.0.0.0')

@@ -1,15 +1,11 @@
 import os
 
 from flask import Flask, request
+from settings import APPLICATION_PORT
 
 from disk import read_and_save_to_avro
 
 app = Flask(__name__)
-
-port = os.environ.get('PORT')
-
-if not port:
-    port = 8082
 
 
 @app.post("/")
@@ -54,4 +50,4 @@ def execute():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=port, host='0.0.0.0')
+    app.run(debug=True, port=APPLICATION_PORT, host='0.0.0.0')

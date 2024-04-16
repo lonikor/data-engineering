@@ -3,7 +3,7 @@ import requests
 from functools import reduce
 from typing import List, Dict, Any
 
-BASE_URL = "https://fake-api-vycpfa6oca-uc.a.run.app/sales"
+from ..settings import BASE_URL
 
 
 def fetch_data(date: str, auth_token: str) -> List[Dict[str, Any]]:
@@ -11,7 +11,7 @@ def fetch_data(date: str, auth_token: str) -> List[Dict[str, Any]]:
 
     result: list = []
 
-    while page <= 4:
+    while True:
         response = requests.get(url=BASE_URL, params={'date': date, 'page': page},
                                 headers={"Authorization": auth_token})
 
